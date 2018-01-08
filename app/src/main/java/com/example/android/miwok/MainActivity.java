@@ -18,6 +18,7 @@ package com.example.android.miwok;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.TextView;
@@ -94,5 +95,17 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(phrasesIntent);
             }
         });
+
+        ReportCard rc = new ReportCard();
+        rc.setArtGrade("A");
+        rc.setChemistryGrade("B");
+        rc.setEnglishGrade("B-");
+        rc.setArtGrade("C+");
+        rc.setMathGrade("A");
+        rc.setMusicGrade("B");
+        rc.setPeGrade("A");
+        rc.setSpanishGrade("A");
+        Log.d(this.getClass().getSimpleName() + ".onCreate", rc.toString());
+
     }
 }
