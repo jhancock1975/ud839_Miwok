@@ -7,6 +7,13 @@ package com.example.android.miwok;
 public class Word {
     private String english;
     private String miwok;
+    private int imgResId;
+
+    public Word(String english, String miwok, int imgResId) {
+        this.english = english;
+        this.miwok = miwok;
+        this.imgResId = imgResId;
+    }
 
     public Word(String english, String miwok) {
         this.english = english;
@@ -27,5 +34,13 @@ public class Word {
 
     public void setMiwok(String miwok) {
         this.miwok = miwok;
+    }
+
+    public int getImgResId() {
+        return imgResId;
+    }
+
+    public void setImgResId(int imgResId) {
+        this.imgResId = imgResId;
     }
 }
