@@ -7,17 +7,25 @@ package com.example.android.miwok;
 public class Word {
     private String english;
     private String miwok;
-    private int imgResId;
 
-    public Word(String english, String miwok, int imgResId) {
+    //integer to hold resource id
+    //for images
+    private Integer imgResId;
+
+    //integer to hold background color
+    private int bgColor;
+
+    public Word(String english, String miwok, int imgResId, int bgColor) {
         this.english = english;
         this.miwok = miwok;
         this.imgResId = imgResId;
+        this.bgColor=bgColor;
     }
 
-    public Word(String english, String miwok) {
+    public Word(String english, String miwok, int bgColor) {
         this.english = english;
         this.miwok = miwok;
+        this.bgColor=bgColor;
     }
 
     public String getEnglish() {
@@ -36,11 +44,15 @@ public class Word {
         this.miwok = miwok;
     }
 
-    public int getImgResId() {
+    public Integer getImgResId() {
         return imgResId;
     }
 
-    public void setImgResId(int imgResId) {
+    public void setImgResId(Integer imgResId) {
         this.imgResId = imgResId;
+    }
+
+    public int getBgColor() {
+        return bgColor;
     }
 }
