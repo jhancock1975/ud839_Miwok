@@ -12,20 +12,16 @@ public class Word {
     //for images
     private Integer imgResId;
 
-    //integer to hold background color
-    private int bgColor;
 
-    public Word(String english, String miwok, int imgResId, int bgColor) {
+    public Word(String english, String miwok, int imgResId) {
         this.english = english;
         this.miwok = miwok;
         this.imgResId = imgResId;
-        this.bgColor=bgColor;
     }
 
-    public Word(String english, String miwok, int bgColor) {
+    public Word(String english, String miwok) {
         this.english = english;
         this.miwok = miwok;
-        this.bgColor=bgColor;
     }
 
     public String getEnglish() {
@@ -52,7 +48,4 @@ public class Word {
         this.imgResId = imgResId;
     }
 
-    public int getBgColor() {
-        return bgColor;
-    }
 }

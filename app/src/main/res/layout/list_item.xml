@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:minHeight="@dimen/list_item_height"
     android:orientation="horizontal">
 
     <ImageView
@@ -10,6 +11,8 @@
         android:layout_height="wrap_content"/>
 
     <LinearLayout
+        android:id="@+id/text_wrapper"
+        android:padding="16dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
@@ -19,12 +22,18 @@
             style="@style/CategoryStyle"
             android:id="@+id/miwok"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:layout_gravity="bottom"/>
 
         <TextView
+            style="@style/CategoryStyle"
+            android:textStyle="normal"
             android:id="@+id/english"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:layout_gravity="top"/>
 
     </LinearLayout>
 </LinearLayout>
