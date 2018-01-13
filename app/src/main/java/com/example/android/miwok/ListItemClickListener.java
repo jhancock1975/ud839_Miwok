@@ -25,6 +25,13 @@ public class ListItemClickListener implements OnItemClickListener {
     Context context;
     List<Word> words;
 
+    private MediaPlayer.OnCompletionListener completionListener = new MediaPlayer.OnCompletionListener() {
+        @Override
+        public void onCompletion(MediaPlayer mediaPlayer) {
+            releaseMediaPlayer(mediaPlayer);
+        }
+    };
+
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
         Log.d("numbers", "onCreate.onItemClick");
@@ -32,12 +39,7 @@ public class ListItemClickListener implements OnItemClickListener {
         mediaPlayer = MediaPlayer.create(context,
                 words.get(i).getSoundId());
         mediaPlayer.start();
-        mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-            @Override
-            public void onCompletion(MediaPlayer mediaPlayer) {
-                releaseMediaPlayer(mediaPlayer);
-            }
-        });
+        mediaPlayer.setOnCompletionListener(this.completionListener);
     }
     private void releaseMediaPlayer(MediaPlayer mMediaPlayer) {
         // If the media player is not null, then it may be currently playing a sound.
