@@ -62,14 +62,7 @@ public class ColorsActivity extends AppCompatActivity {
 
         listView.setAdapter(itemsAdapter);
 
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Log.d("colors", "onCreate.onItemClick");
-                mediaPlayer = MediaPlayer.create(ColorsActivity.this, words.get(i).getSoundId());
-                mediaPlayer.start();
-            }
-        });
-
+        listView.setOnItemClickListener(new ListItemClickListener(mediaPlayer, this,
+                words));
     }
 }
