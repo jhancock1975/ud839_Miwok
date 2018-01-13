@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import java.util.List;
@@ -33,13 +34,17 @@ public class WordAdapter extends ArrayAdapter<Word> {
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         View listItemView = convertView;
         if (listItemView == null) {
-            listItemView = LayoutInflater.from(getContext()).inflate(
+            listItemView =  LayoutInflater.from(getContext()).inflate(
                     R.layout.list_item, parent, false);
         }
+
+
+
         // Get the {@link Word} object located at this position in the list
         Word currentWord = getItem(position);
 
         LinearLayout textWrapper = (LinearLayout) listItemView.findViewById(R.id.text_wrapper);
+
         textWrapper.setBackgroundColor(ContextCompat.getColor(getContext(),this.bgColor));
         Log.d(this.getClass().getSimpleName()+"getView::",
                 "color == " + bgColor);
@@ -47,6 +52,7 @@ public class WordAdapter extends ArrayAdapter<Word> {
 
         // Find the TextView in the list_item.xml layout with the english word
         TextView englishTextView = (TextView) listItemView.findViewById(R.id.english);
+
 
         // Get the version name from the current Word object and
         // set this text on the English TextView
