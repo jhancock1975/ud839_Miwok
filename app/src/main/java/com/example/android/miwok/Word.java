@@ -12,16 +12,20 @@ public class Word {
     //for images
     private Integer imgResId;
 
+    //integer to hold sound resource id
+    private int soundId;
 
-    public Word(String english, String miwok, int imgResId) {
+    public Word(String english, String miwok, int soundId) {
+        this.english = english;
+        this.miwok = miwok;
+        this.soundId = soundId;
+    }
+
+    public Word(String english, String miwok, Integer imgResId, int soundId) {
         this.english = english;
         this.miwok = miwok;
         this.imgResId = imgResId;
-    }
-
-    public Word(String english, String miwok) {
-        this.english = english;
-        this.miwok = miwok;
+        this.soundId = soundId;
     }
 
     public String getEnglish() {
@@ -48,4 +52,7 @@ public class Word {
         this.imgResId = imgResId;
     }
 
+    public int getSoundId() {
+        return soundId;
+    }
 }
