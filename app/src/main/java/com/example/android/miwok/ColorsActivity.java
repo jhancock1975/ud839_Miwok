@@ -30,6 +30,7 @@ import java.util.List;
 public class ColorsActivity extends AppCompatActivity {
 
     MediaPlayer mediaPlayer;
+    ListItemClickListener clickListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,7 +63,16 @@ public class ColorsActivity extends AppCompatActivity {
 
         listView.setAdapter(itemsAdapter);
 
-        listView.setOnItemClickListener(new ListItemClickListener(mediaPlayer, this,
-                words));
+        clickListener = new ListItemClickListener(mediaPlayer, this,
+                words);
+
+        listView.setOnItemClickListener(clickListener);
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        Log.d("colors", "onstop");
+        clickListener.releaseMediaPlayer();
     }
 }

@@ -30,6 +30,7 @@ import java.util.List;
 public class NumbersActivity extends AppCompatActivity {
 
     MediaPlayer mediaPlayer;
+    ListItemClickListener clickListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,7 +67,17 @@ public class NumbersActivity extends AppCompatActivity {
 
         listView.setAdapter(itemsAdapter);
 
-        listView.setOnItemClickListener(new ListItemClickListener(mediaPlayer, this, words));
 
+        clickListener = new ListItemClickListener(mediaPlayer, this,
+                words);
+
+        listView.setOnItemClickListener(clickListener);
+
+    }
+    @Override
+    protected void onStop() {
+        super.onStop();
+        Log.d("numbers", "onstop mediaPlayer == " + mediaPlayer);
+        clickListener.releaseMediaPlayer();
     }
 }

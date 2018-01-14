@@ -11,7 +11,7 @@ public class MediaPlayerUtil {
     /**
      * Clean up the media player by releasing its resources.
      */
-    private static void releaseMediaPlayer(MediaPlayer mMediaPlayer) {
+    public static void releaseMediaPlayer(MediaPlayer mMediaPlayer) {
         // If the media player is not null, then it may be currently playing a sound.
         if (mMediaPlayer != null) {
             // Regardless of the current state of the media player, release its resources
