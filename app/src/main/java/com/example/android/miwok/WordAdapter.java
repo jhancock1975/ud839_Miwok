@@ -12,6 +12,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import java.util.List;
@@ -43,7 +44,7 @@ public class WordAdapter extends ArrayAdapter<Word> {
         // Get the {@link Word} object located at this position in the list
         Word currentWord = getItem(position);
 
-        LinearLayout textWrapper = (LinearLayout) listItemView.findViewById(R.id.text_wrapper);
+        RelativeLayout textWrapper = (RelativeLayout) listItemView.findViewById(R.id.text_wrapper);
 
         textWrapper.setBackgroundColor(ContextCompat.getColor(getContext(),this.bgColor));
         Log.d(this.getClass().getSimpleName()+"getView::",

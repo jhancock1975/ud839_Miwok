@@ -9,32 +9,46 @@
         android:id="@+id/list_item_icon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@color/tan_background"/>
+        android:background="@color/tan_background" />
 
-    <LinearLayout
+    <RelativeLayout
         android:id="@+id/text_wrapper"
-        android:padding="16dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="horizontal">
 
+        <LinearLayout
 
-        <TextView
-            style="@style/CategoryStyle"
-            android:id="@+id/miwok"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:layout_gravity="bottom"/>
-
-        <TextView
-            style="@style/CategoryStyle"
-            android:textStyle="normal"
-            android:id="@+id/english"
             android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:layout_gravity="top"/>
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="16dp">
 
-    </LinearLayout>
+
+            <TextView
+                android:id="@+id/miwok"
+                style="@style/CategoryStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_gravity="bottom"
+                android:layout_weight="1" />
+
+            <TextView
+                android:id="@+id/english"
+                style="@style/CategoryStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_gravity="top"
+                android:layout_weight="1"
+                android:textStyle="normal" />
+
+        </LinearLayout>
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="16dp"
+            android:src="@drawable/ic_play_arrow_white_24dp"/>
+    </RelativeLayout>
 </LinearLayout>
