@@ -1,6 +1,7 @@
 package com.example.android.miwok;
 
 import android.content.Context;
+import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.util.Log;
 import android.view.View;
@@ -25,6 +26,34 @@ public class ListItemClickListener implements OnItemClickListener {
     Context context;
     List<Word> words;
 
+    AudioManager am;
+    AudioManager.OnAudioFocusChangeListener afChangeListener= new AudioManager.OnAudioFocusChangeListener() {
+        @Override
+        public void onAudioFocusChange(int i) {
+            Log.d("phrases", "audiofocus change i == " +  i);
+            switch (i){
+                case AudioManager.AUDIOFOCUS_LOSS:
+                    releaseMediaPlayer();
+                    break;
+                case AudioManager.AUDIOFOCUS_LOSS_TRANSIENT:
+                case AudioManager.AUDIOFOCUS_LOSS_TRANSIENT_CAN_DUCK:
+                    pausePlayback();
+                    break;
+                case AudioManager.AUDIOFOCUS_GAIN:
+                    Log.d("phrases", "got audio focus.");
+                    mediaPlayer.start();
+            }
+        }
+    };
+
+    public void pausePlayback() {
+        if (ListItemClickListener.this.mediaPlayer != null) {
+            ListItemClickListener.this.mediaPlayer.pause();
+            ListItemClickListener.this.mediaPlayer.seekTo(0);
+        }
+    }
+
+
     private MediaPlayer.OnCompletionListener completionListener = new MediaPlayer.OnCompletionListener() {
         @Override
         public void onCompletion(MediaPlayer mediaPlayer) {
@@ -38,8 +67,20 @@ public class ListItemClickListener implements OnItemClickListener {
         releaseMediaPlayer();
         mediaPlayer = MediaPlayer.create(context,
                 words.get(i).getSoundId());
-        mediaPlayer.start();
-        mediaPlayer.setOnCompletionListener(this.completionListener);
+         am = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
+
+        // Request audio focus for playback
+        int result = am.requestAudioFocus(afChangeListener,
+                // Use the music stream.
+                AudioManager.STREAM_MUSIC,
+                // Request permanent focus.
+                AudioManager.AUDIOFOCUS_GAIN_TRANSIENT);
+
+        if (result == AudioManager.AUDIOFOCUS_REQUEST_GRANTED) {
+            mediaPlayer.start();
+            mediaPlayer.setOnCompletionListener(this.completionListener);
+        }
+
     }
     public void releaseMediaPlayer() {
 
@@ -55,6 +96,9 @@ public class ListItemClickListener implements OnItemClickListener {
             // setting the media player to null is an easy way to tell that the media player
             // is not configured to play an audio file at the moment.
             mediaPlayer = null;
+        }
+        if (this.am != null){
+            this.am.abandonAudioFocus(afChangeListener);
         }
     }
 
